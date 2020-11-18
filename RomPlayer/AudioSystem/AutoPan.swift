@@ -8,7 +8,7 @@
 
 import AudioKit
 
-class AutoPan: AKNode {
+class AutoPan: Node {
     
     var freq = 0.1 {
         didSet {
@@ -22,17 +22,17 @@ class AutoPan: AKNode {
         }
     }
     
-    fileprivate var output: AKOperationEffect
+    fileprivate var output: OperationEffect
     
-    init(_ input: AKNode) {
+    init(_ input: Node) {
         
-        output = AKOperationEffect(input) { input, parameters in
+        output = OperationEffect(input) { input, parameters in
         
-            let autoPanFrequency = AKOperation.parameters[0]
-            let autoPanMix = AKOperation.parameters[1]
+            let autoPanFrequency = Operation.parameters[0]
+            let autoPanMix = Operation.parameters[1]
             
             // Now all of our operation work is in this block, nicely indented, away from harm's way
-            let oscillator = AKOperation.sineWave(frequency: autoPanFrequency)
+            let oscillator = Operation.sineWave(frequency: autoPanFrequency)
            
             let panner = input.pan(oscillator * autoPanMix)
             return panner

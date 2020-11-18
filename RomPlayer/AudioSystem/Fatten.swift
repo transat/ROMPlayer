@@ -8,25 +8,25 @@
 
 import AudioKit
 
-class Fatten: AKNode, AKInput {
-    var dryWetMix: AKDryWetMixer
-    var delay: AKDelay
-    var pannedDelay: AKPanner
-    var pannedSource: AKPanner
-    var wet: AKMixer
-    var inputMixer = AKMixer()
+class Fatten: Node, Input {
+    var dryWetMix: DryWetMixer
+    var delay: Delay
+    var pannedDelay: Panner
+    var pannedSource: Panner
+    var wet: Mixer
+    var inputMixer = Mixer()
 
     var inputNode: AVAudioNode {
         return inputMixer.avAudioNode
     }
     
-    init(_ input: AKNode) {
+    init(_ input: Node) {
         input.connect(to: inputMixer)
-        delay = AKDelay(inputMixer, time: 0.04, dryWetMix: 1)
-        pannedDelay = AKPanner(delay, pan: 1)
-        pannedSource = AKPanner(inputMixer, pan: -1)
-        wet = AKMixer(pannedDelay, pannedSource)
-        dryWetMix = AKDryWetMixer(inputMixer, wet, balance: 0)
+        delay = Delay(inputMixer, time: 0.04, dryWetMix: 1)
+        pannedDelay = Panner(delay, pan: 1)
+        pannedSource = Panner(inputMixer, pan: -1)
+        wet = Mixer(pannedDelay, pannedSource)
+        dryWetMix = DryWetMixer(inputMixer, wet, balance: 0)
         super.init()
         self.avAudioNode = dryWetMix.avAudioNode
     }

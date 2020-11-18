@@ -23,7 +23,7 @@ class ParentViewController: UIViewController {
     @IBOutlet weak var midiPanicButton: TopUIButton!
     @IBOutlet weak var aboutButton: TopUIButton!
     @IBOutlet weak var octaveStepper: Stepper!
-    @IBOutlet weak var bluetoothButton: AKBluetoothMIDIButton!
+    @IBOutlet weak var bluetoothButton: BluetoothMIDIButton!
     @IBOutlet weak var midiSettingsButton: SynthUIButton!
     @IBOutlet weak var midiLearnToggle: SynthUIButton!
     
@@ -307,7 +307,7 @@ extension ParentViewController: PresetPopOverDelegate {
 // MARK: - Keyboard Delegate Note on/off
 // **********************************************************
 
-extension ParentViewController: AKKeyboardDelegate {
+extension ParentViewController: KeyboardDelegate {
     
     public func noteOn(note: MIDINoteNumber, velocity: MIDIVelocity = 127) {
         conductor.playNote(note: note, velocity: velocity, channel: midiChannelIn)
@@ -321,7 +321,7 @@ extension ParentViewController: AKKeyboardDelegate {
 }
 
 // **********************************************************
-// MARK: - AKMIDIListener protocol functions
+// MARK: - MIDIListener protocol functions
 // **********************************************************
 
 extension ParentViewController: AKMIDIListener  {

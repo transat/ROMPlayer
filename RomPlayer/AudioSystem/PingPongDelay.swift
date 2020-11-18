@@ -8,22 +8,22 @@
 
 import AudioKit
 
-class PingPongDelay: AKNode, AKInput {
+class PingPongDelay: Node, Input {
     var rampDuration = 0.2
     
-    var mixer: AKDryWetMixer
-    var leftDelay = AKVariableDelay()
-    var leftDelayDelay = AKVariableDelay()
-    var leftCompensator = AKVariableDelay()
-    var leftMix = AKMixer()
+    var mixer: DryWetMixer
+    var leftDelay = VariableDelay()
+    var leftDelayDelay = VariableDelay()
+    var leftCompensator = VariableDelay()
+    var leftMix = Mixer()
     
-    var rightDelay = AKVariableDelay()
-    var delayMixer = AKMixer()
+    var rightDelay = VariableDelay()
+    var delayMixer = Mixer()
     
-    var leftPanner = AKPanner()
-    var rightPanner = AKPanner()
+    var leftPanner = Panner()
+    var rightPanner = Panner()
     
-    var finalBooster = AKBooster()
+    var finalBooster = Booster()
     
     var time = 0.0 {
         didSet {
@@ -66,7 +66,7 @@ class PingPongDelay: AKNode, AKInput {
         //        rightDelay.clear()
     }
     
-    init(_ input: AKNode) {
+    init(_ input: Node) {
         
         leftPanner.pan = -1
         rightPanner.pan = 1
@@ -90,7 +90,7 @@ class PingPongDelay: AKNode, AKInput {
         
         [leftPanner, rightPanner] >>> delayMixer >>> finalBooster
         
-        mixer = AKDryWetMixer(input, finalBooster, balance: 0.0)
+        mixer = DryWetMixer(input, finalBooster, balance: 0.0)
         
         super.init()
         self.avAudioNode = mixer.avAudioNode

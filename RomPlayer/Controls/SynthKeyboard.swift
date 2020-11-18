@@ -10,7 +10,7 @@ import UIKit
 import AudioKit
 
 /// Delegate for keyboard events
-public protocol AKKeyboardDelegate: class {
+public protocol KeyboardDelegate: class {
     /// Note on evenets
     func noteOn(note: MIDINoteNumber, velocity: MIDIVelocity)
     /// Note off events
@@ -18,7 +18,7 @@ public protocol AKKeyboardDelegate: class {
 }
 
 /// Clickable keyboard mainly used for AudioKit playgrounds
-@IBDesignable open class SynthKeyboard: UIView, AKMIDIListener {
+@IBDesignable open class SynthKeyboard: UIView, MIDIListener {
     
     /// Number of octaves displayed at once
     @IBInspectable open var octaveCount: Int = 2
@@ -54,7 +54,7 @@ public protocol AKKeyboardDelegate: class {
     @IBInspectable open var  darkMode: Bool = false
     
     /// Class to handle user actions
-    open weak var delegate: AKKeyboardDelegate?
+    open we var delegate: KeyboardDelegate?
     
     var oneOctaveSize = CGSize.zero
     var xOffset: CGFloat = 1

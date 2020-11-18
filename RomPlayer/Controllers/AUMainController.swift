@@ -62,7 +62,7 @@ class AUMainController: UIViewController {
         setupCallbacks()
        
         // Visualization
-        let plot = AKNodeFFTPlot(conductor.reverbMixer, frame: CGRect(x: 0, y: 0, width: 2400, height: 86))
+        let plot = NodeFFTPlot(conductor.reverbMixer, frame: CGRect(x: 0, y: 0, width: 2400, height: 86))
         plot.shouldFill = true
         plot.shouldMirror = true
         plot.shouldCenterYAxis = true
