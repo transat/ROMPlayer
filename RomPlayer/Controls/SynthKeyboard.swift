@@ -54,7 +54,7 @@ public protocol KeyboardDelegate: class {
     @IBInspectable open var  darkMode: Bool = false
     
     /// Class to handle user actions
-    open we var delegate: KeyboardDelegate?
+    open func we; var delegate: KeyboardDelegate?
     
     var oneOctaveSize = CGSize.zero
     var xOffset: CGFloat = 1

@@ -7,6 +7,7 @@
 //
 
 import AudioKit
+import SwiftUI
 
 @IBDesignable
 public class MIDIKnob: Knob, MIDILearnable {
