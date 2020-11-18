@@ -8,7 +8,7 @@
 
 import AudioKit
 
-class FilterSection: Node, Input {
+class FilterSection: Node {
     var parameters: [Double] = [1_000, 0.9, 1_000, 1, 0]
 
     var cutoffFrequency: Double = 1_000 {

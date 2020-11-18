@@ -8,7 +8,7 @@
 
 import AudioKit
 
-class Fatten: Node, Input {
+class Fatten: Node{
     var dryWetMix: DryWetMixer
     var delay: Delay
     var pannedDelay: Panner

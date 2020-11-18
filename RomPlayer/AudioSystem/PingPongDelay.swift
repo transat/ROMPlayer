@@ -8,7 +8,7 @@
 
 import AudioKit
 
-class PingPongDelay: Node, Input {
+class PingPongDelay: Node {
     var rampDuration = 0.2
     
     var mixer: DryWetMixer
