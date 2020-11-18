@@ -39,19 +39,14 @@ Shane has also documented tips for [preparing samples](https://github.com/AudioK
 
 I have tried to streamline this code. There is a focus on the core-functionality to make it easy-to-understand. That being said, audio programming can be challenging. This may be difficult for complete beginners. And, new frameworks can be overwhelming, even for experienced developers. 
 
-**CocoaPods**  
-This repo uses CocoaPods to easily add AudioKit to your project. 
+**Installation via Swift Package Manager**  
 
-Using the `Terminal` app in your mac, change directories to the folder that contains this project. The correct directory contains a file called `podfile`
-
-Run `pod install` from the command line. This will add AudioKit & AudioKit UI to project
-
-Then open `RomPlayer.xcworkspace` in Xcode
+To add AudioKit to your Xcode project, select File -> Swift Packages -> Add Package Depedancy. Enter https://github.com/AudioKit/AudioKit for the URL. Check the use branch option and enter v5-main or v5-develop.
 
 
 ## Requirements
 
-- Mac or computer running Xcode 9 ([Free Download](https://itunes.apple.com/us/app/xcode/id497799835?mt=12))
+- Mac or computer running Xcode 12 ([Free Download](https://itunes.apple.com/us/app/xcode/id497799835?mt=12))
 - Some knowledge of programming, specifically Swift & the iOS SDK
 
 If you are new to iOS development, I highly recommend the [Ray Wenderlich](https://www.raywenderlich.com/) videos. There is also a great tutorial on basic synthesis with AudioKit  [here.](https://www.raywenderlich.com/145770/audiokit-tutorial-getting-started) 
