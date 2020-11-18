@@ -8,7 +8,7 @@
 
 import UIKit
 import AudioKit
-import AudioKitUI
+import SwiftUI
 import GameplayKit
 
 class ParentViewController: UIViewController {
