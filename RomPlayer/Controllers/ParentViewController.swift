@@ -374,9 +374,9 @@ extension ParentViewController: AKMIDIListener  {
         
         // Handle MIDI Control Messages
         switch controller {
-        case AKMIDIControl.modulationWheel.rawValue:
+        case MIDIControl.modulationWheel.rawValue:
             self.conductor.tremolo.frequency = Double(value)/12.0
-        case AKMIDIControl.damperOnOff.rawValue:
+        case MIDIControl.damperOnOff.rawValue:
             self.conductor.sampler1.sustainPedal(pedalDown: value > 0)
         default:
           break
