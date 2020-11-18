@@ -170,17 +170,17 @@ class AUMainController: UIViewController {
         }
         
         masterVolume.callback = { value in
-            self.conductor.masterVolume.volume = value
+            self.conductor.masterVolume.volume = AUValue(value)
             self.outputLabel.text = "Master Vol: \((value/self.masterVolume.range.upperBound).percentageString)"
         }
         
         distortKnob.callback = { value in
-            self.conductor.decimator.rounding = value
+            self.conductor.decimator.rounding = AUValue(value)
             self.outputLabel.text = "Distort: \(Double(self.distortKnob.knobValue).percentageString)"
         }
         
         crushKnob.callback = { value in
-            self.conductor.decimator.decimation = value
+            self.conductor.decimator.decimation = AUValue(value)
             self.outputLabel.text = "Crusher: \(Double(self.crushKnob.knobValue).percentageString)"
         }
         
@@ -210,7 +210,7 @@ class AUMainController: UIViewController {
         }
         
         reverbAmtKnob.callback = { value in
-            self.conductor.reverb.feedback = value
+            self.conductor.reverb.feedback = AUValue(value)
             if value == 1.0 {
                 self.outputLabel.text = "Reverb Level: Blackhole!"
             } else {
@@ -220,7 +220,7 @@ class AUMainController: UIViewController {
         }
         
         reverbMixKnob.callback = { value in
-            if self.reverbToggle.isOn { self.conductor.reverbMixer.balance = value }
+            if self.reverbToggle.isOn { self.conductor.reverbMixer.balance = AUValue(value) }
             self.outputLabel.text = "Reverb Wet: \(value.percentageString)"
         }
         
@@ -283,7 +283,7 @@ class AUMainController: UIViewController {
                 self.conductor.reverbMixer.balance = 0.0
             } else {
                 self.outputLabel.text = "Reverb On"
-                self.conductor.reverbMixer.balance = self.reverbMixKnob.value
+                self.conductor.reverbMixer.balance = AUValue(self.reverbMixKnob.value)
             }
         }
         

@@ -28,7 +28,7 @@ class Fatten: Node{
         pannedSource = Panner(inputMixer, pan: -1)
         wet = Mixer(pannedDelay, pannedSource)
         dryWetMix = DryWetMixer(inputMixer, wet, balance: 0)
-        super.init()
+        super.init(avAudioUnit: <#AVAudioUnit#>)
         self.avAudioNode = dryWetMix.avAudioNode
     }
 

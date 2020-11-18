@@ -38,7 +38,7 @@ class AutoPan: Node {
             return panner
         }
        
-        super.init()
+        super.init(avAudioUnit: <#AVAudioUnit#>)
         self.avAudioNode = output.avAudioNode
         //input.connect(to: output)
         

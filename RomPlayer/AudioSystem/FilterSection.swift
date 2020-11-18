@@ -7,6 +7,7 @@
 //
 
 import AudioKit
+import AVKit
 
 class FilterSection: Node {
     var parameters: [Double] = [1_000, 0.9, 1_000, 1, 0]
@@ -71,7 +72,7 @@ class FilterSection: Node {
         }
         output.parameters = parameters
 
-        super.init()
+        super.init(avAudioUnit: <#AVAudioUnit#>)
         self.avAudioNode = output.avAudioNode
 
     }

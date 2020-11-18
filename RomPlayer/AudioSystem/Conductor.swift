@@ -37,7 +37,7 @@ class Conductor {
         midi.openOutput()
     
         // Session settings
-        AudioFile.cleanTempDirectory()
+//        AVAudioFile.cleanTempDirectory() // Still needed?
         Settings.bufferLength = .medium
         Settings.enableLogging = false
         
@@ -71,9 +71,10 @@ class Conductor {
         reverbMixer = DryWetMixer(masterVolume, reverb, balance: 0.3)
        
         // Set Output & Start AudioKit
-        AudioKit.output = reverbMixer
+        let engine = AudioEngine()
+        engine.output = reverbMixer
         do {
-            try AudioKit.start()
+            try engine.start()
         } catch {
             print("AudioKit.start() failed")
         }

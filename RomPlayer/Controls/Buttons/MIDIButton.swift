@@ -7,6 +7,7 @@
 //
 
 import AudioKit
+import SwiftUI
 
 @IBDesignable
 class MIDIButton: ToggleButton, MIDILearnable {

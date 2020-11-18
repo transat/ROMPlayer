@@ -7,42 +7,43 @@
 //
 
 import AudioKit
+import AVKit
 
 class PingPongDelay: Node {
     var rampDuration = 0.2
     
     var mixer: DryWetMixer
-    var leftDelay = VariableDelay()
-    var leftDelayDelay = VariableDelay()
-    var leftCompensator = VariableDelay()
+    var leftDelay = VariableDelay(<#Node#>)
+    var leftDelayDelay = VariableDelay(<#Node#>)
+    var leftCompensator = VariableDelay(<#Node#>)
     var leftMix = Mixer()
     
-    var rightDelay = VariableDelay()
+    var rightDelay = VariableDelay(<#Node#>)
     var delayMixer = Mixer()
     
-    var leftPanner = Panner()
-    var rightPanner = Panner()
+    var leftPanner = Panner(<#Node#>)
+    var rightPanner = Panner(<#Node#>)
     
     var finalBooster = Booster()
     
     var time = 0.0 {
         didSet {
-            leftCompensator.time = time / 2.0
-            leftDelay.time = time
-            leftDelayDelay.time = time / 2.0
-            rightDelay.time = time
+            leftCompensator.time = AUValue(time / 2.0)
+            leftDelay.time = AUValue(time)
+            leftDelayDelay.time = AUValue(time / 2.0)
+            rightDelay.time = AUValue(time)
         }
     }
     var feedback = 0.0 {
         didSet {
-            leftDelay.feedback = feedback
-            rightDelay.feedback = feedback
+            leftDelay.feedback = AUValue(feedback)
+            rightDelay.feedback = AUValue(feedback)
         }
     }
     
     var balance = 0.0 {
         didSet {
-            mixer.balance = balance
+            mixer.balance = AUValue(balance)
         }
     }
     
@@ -71,11 +72,11 @@ class PingPongDelay: Node {
         leftPanner.pan = -1
         rightPanner.pan = 1
         
-        leftCompensator.rampDuration = rampDuration
-        leftDelayDelay.rampDuration = rampDuration
-        leftDelay.rampDuration = rampDuration
-        rightDelay.rampDuration = rampDuration
-        finalBooster.rampDuration = rampDuration
+//        leftCompensator.rampDuration = rampDuration
+//        leftDelayDelay.rampDuration = rampDuration
+//        leftDelay.rampDuration = rampDuration
+//        rightDelay.rampDuration = rampDuration
+//        finalBooster.rampDuration = rampDuration
         
         input >>> leftDelay
         input >>> rightDelay
@@ -92,7 +93,7 @@ class PingPongDelay: Node {
         
         mixer = DryWetMixer(input, finalBooster, balance: 0.0)
         
-        super.init()
+        super.init(avAudioUnit: <#AVAudioUnit#>)
         self.avAudioNode = mixer.avAudioNode
     }
 }

@@ -10,8 +10,25 @@ import UIKit
 import AudioKit
 import SwiftUI
 import GameplayKit
+import CoreMIDI
 
-class ParentViewController: UIViewController {
+class ParentViewController: UIViewController, MIDIListener {
+    func receivedMIDIAftertouch(noteNumber: MIDINoteNumber, pressure: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID?, offset: MIDITimeStamp) {
+        <#code#>
+    }
+    
+    func receivedMIDISystemCommand(_ data: [MIDIByte], portID: MIDIUniqueID?, offset: MIDITimeStamp) {
+        <#code#>
+    }
+    
+    func receivedMIDIPropertyChange(propertyChangeInfo: MIDIObjectPropertyChangeNotification) {
+        <#code#>
+    }
+    
+    func receivedMIDINotification(notification: MIDINotification) {
+        <#code#>
+    }
+    
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var displayLabel: UILabel!
@@ -324,7 +341,7 @@ extension ParentViewController: KeyboardDelegate {
 // MARK: - MIDIListener protocol functions
 // **********************************************************
 
-extension ParentViewController: AKMIDIListener  {
+extension ParentViewController: MIDIListener  {
 
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber,
                             velocity: MIDIVelocity,
@@ -375,7 +392,7 @@ extension ParentViewController: AKMIDIListener  {
         // Handle MIDI Control Messages
         switch controller {
         case MIDIControl.modulationWheel.rawValue:
-            self.conductor.tremolo.frequency = Double(value)/12.0
+            self.conductor.tremolo.frequency = AUValue(Double(value)/12.0)
         case MIDIControl.damperOnOff.rawValue:
             self.conductor.sampler1.sustainPedal(pedalDown: value > 0)
         default:
@@ -432,7 +449,7 @@ extension ParentViewController: AKMIDIListener  {
                                 portID: MIDIUniqueID? = nil,
                                 offset: MIDITimeStamp = 0) {
         guard channel == midiChannelIn || omniMode else { return }
-        self.conductor.tremolo.frequency = Double(pressure)/20.0
+        self.conductor.tremolo.frequency = AUValue(Double(pressure)/20.0)
     }
    
     // MIDI Setup Change
