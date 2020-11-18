@@ -6,6 +6,7 @@
 //  Copyright © 2017 AudioKit Pro. All rights reserved.
 
 import AudioKit
+import AVKit
 
 class Conductor {
     

@@ -7,6 +7,7 @@
 //
 
 import AudioKit
+import AVKit
 
 class Fatten: Node{
     var dryWetMix: DryWetMixer
